@@ -1,0 +1,5 @@
+{
+  "test.py::MyTest::test_app": true,
+  "test.py::MyTest::test_server_is_up_and_running": true,
+  "test.py::MyTestCase::test_server_up_and_running": true
+}
