@@ -5,4 +5,4 @@ python:
 # command to run tests
 script:
   - "python manage.py runserver"
-  - "pytest test.py"
+  - "pytest test_app.py"
