@@ -4,4 +4,5 @@ python:
   - "3.6"
 # command to run tests
 script:
+  - "export APP_SETTINGS=config.ProductionConfig"
   - "pytest"
