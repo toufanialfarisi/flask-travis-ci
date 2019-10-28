@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.config.from_object(os.environ["APP_SETTINGS"])
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
     if "log_message" in session:
         return render_template("index.html", message=session["log_message"])
@@ -13,7 +13,7 @@ def index():
         return render_template("index.html")
 
 
-@app.route("/about")
+@app.route("/about", methods=["POST", "GET"])
 def about():
     if "log_message" in session:
         return render_template("about.html")
@@ -21,7 +21,7 @@ def about():
         return render_template("login.html")
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["POST", "GET"])
 def contact():
     if "log_message" in session:
         return render_template("contact.html")
