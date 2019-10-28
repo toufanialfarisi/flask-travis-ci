@@ -1,22 +1,56 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, session, redirect, url_for
+import os
 
 app = Flask(__name__)
-app.config.from_object("config.DevelopmentConfig")
+app.config.from_object(os.environ["APP_SETTINGS"])
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    if "log_message" in session:
+        return render_template("index.html", message=session["log_message"])
+    else:
+        return render_template("index.html")
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    if "log_message" in session:
+        return render_template("about.html")
+    else:
+        return render_template("login.html")
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    if "log_message" in session:
+        return render_template("contact.html")
+    else:
+        return render_template("login.html")
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if "log_message" in session:
+        return redirect(url_for("index"))
+    else:
+        if request.method == "POST":
+            nama = request.form.get("nama", None)
+            username = request.form.get("username", None)
+            if nama == "admin" and username == "admin":
+                session["log_message"] = "login sukses"
+                print("login sukses")
+                return redirect(url_for("index"))
+            else:
+                print("login gagal")
+                return redirect(url_for("login"))
+        return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":

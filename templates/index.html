@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>index</title>
-</head>
-
-<body>
-    <div>
-        <a href="{{ url_for('index') }}">home</a> <a href="{{ url_for('about') }}">about</a> <a
-            href="{{ url_for('contact') }}">contact</a>
-        <div>
-            <h1>Welcome to index !</h1>
-</body>
-
-</html>
+{% extends "layout.html" %}
+{% block content %}
+{% if message %}
+<p>{{ message }}</p>
+<h1>Welcome to index !</h1>
+{% else %}
+<h1>Login dulu ya <a href="{{ url_for('login') }}">di sini</a> </h1>
+{% endif %}
+{% endblock %}

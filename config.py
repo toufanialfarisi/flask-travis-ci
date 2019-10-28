@@ -5,6 +5,7 @@ class BaseConfig(object):
 
     DEBUG = True
     TESTING = False
+    SECRET_KEY = "flaskTravisToufani2019bisa"
 
 
 class ProductionConfig(BaseConfig):
