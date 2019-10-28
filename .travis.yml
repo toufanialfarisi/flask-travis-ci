@@ -1,8 +1,7 @@
 language: python
+# python version to be installed
 python:
-  - "3.5"
-
+  - "3.6"
 # command to run tests
 script:
-  - "python manage.py runserver"
-  - "pytest test_app.py"
+  - "pytest"
