@@ -7,13 +7,22 @@ class MyTestCase(unittest.TestCase):
         my_app.app.testing = True
         self.app = my_app.app.test_client()
 
-    def test_home(self):
-        result = self.app.get("/")
+    def test_index(self):
+        response = self.app.get("/")
         not_found = self.app.get("/test")
-        assert result.status_code == 200
-        assert b"Hallo Travis CI" in result.data
+        assert response.status_code == 200
+        assert b"Welcome to index !" in response.data
         assert not_found.status_code == 404
-        # Make your assertions
+
+    def test_about(self):
+        response = self.app.get("/about")
+        assert response.status_code == 200
+        assert b"Ini adalah halaman about" in response.data
+
+    def test_contact(self):
+        response = self.app.get("/contact")
+        assert response.status_code == 200
+        assert b"Ini adalah halaman contact" in response.data
 
 
 if __name__ == "__main__":
